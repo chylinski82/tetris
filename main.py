@@ -3,6 +3,10 @@ import time
 
 from game_state import GameState
 
+# Define minimum required window size
+MIN_WIN_HEIGHT = 35
+MIN_WIN_WIDTH = 22
+
 # Setup curses
 stdscr = curses.initscr()
 curses.curs_set(0)  # Makes the cursor invisible
@@ -23,6 +27,17 @@ last_speed_increase_time = time.time()
 
 try:
     while True:  # Main game loop
+        # Get current window size
+        height, width = stdscr.getmaxyx()
+
+        # If the window size is too small, display a message and continue to next iteration
+        if height < MIN_WIN_HEIGHT or width < MIN_WIN_WIDTH:
+            stdscr.clear()
+            stdscr.addstr(0, 0, "Window size is too small for the game. Press Ctrl + C and resize.")
+            stdscr.refresh()
+            time.sleep(0.1)
+            continue
+
         # Get the current time in seconds
         current_time = time.time()
 

@@ -8,7 +8,7 @@ class GameState:
     HIGH_SCORE_FILE = 'high_score.txt'
 
     def __init__(self):
-        self.board = Board(20, 30)  # Create a new Board instance
+        self.board = Board(20, 25)  # Create a new Board instance
         self.score = 0
         self.current_piece = Piece(10, 0, self.board)  # Create a piece at the top center of the board
         self.next_piece = Piece(10, 0, self.board)  # Create the next piece
